@@ -32,30 +32,6 @@ $ pip install -r requirements.txt
 <img src="https://user-images.githubusercontent.com/26833433/78175826-599d4800-7410-11ea-87d4-f629071838f6.png" width="900">
 
 
-### Image Augmentation
-
-`datasets.py` applies OpenCV-powered (https://opencv.org/) augmentation to the input image. We use a **mosaic dataloader** to increase image variability during training.
-
-<img src="https://user-images.githubusercontent.com/26833433/80769557-6e015d00-8b02-11ea-9c4b-69310eb2b962.jpg" width="900">
-
-
-### Speed
-
-https://cloud.google.com/deep-learning-vm/  
-**Machine type:** preemptible [n1-standard-8](https://cloud.google.com/compute/docs/machine-types) (8 vCPUs, 30 GB memory)   
-**CPU platform:** Intel Skylake  
-**GPUs:** K80 ($0.14/hr), T4 ($0.11/hr), V100 ($0.74/hr) CUDA with [Nvidia Apex](https://github.com/NVIDIA/apex) FP16/32    
-**HDD:** 300 GB SSD  
-**Dataset:** COCO train 2014 (117,263 images)  
-**Model:** `yolov3-spp.cfg`  
-**Command:**  `python3 train.py --data coco2017.data --img 416 --batch 32`
-
-GPU | n | `--batch-size` | img/s | epoch<br>time | epoch<br>cost
---- |--- |--- |--- |--- |---
-K80    |1| 32 x 2 | 11  | 175 min  | $0.41
-T4     |1<br>2| 32 x 2<br>64 x 1 | 41<br>61 | 48 min<br>32 min | $0.09<br>$0.11
-V100   |1<br>2| 32 x 2<br>64 x 1 | 122<br>**178** | 16 min<br>**11 min** | **$0.21**<br>$0.28
-2080Ti |1<br>2| 32 x 2<br>64 x 1 | 81<br>140 | 24 min<br>14 min | -<br>-
 
 
 ## Inference
